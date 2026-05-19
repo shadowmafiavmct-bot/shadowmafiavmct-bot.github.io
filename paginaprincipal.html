@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LightWater | Concientización y cuidado del agua</title>
+
+  <meta name="description" content="Página informativa sobre el cuidado del agua y noticias ambientales">
+
+  <link rel="stylesheet" href="estilopagina.css">
+</head>
+
+<body>
+
+<header>
+  <div class="logo">LightWater</div>
+
+  <nav>
+    <ul>
+      <li><a href="paginaprincipal.html">Inicio</a></li>
+
+      <li>
+        <a href="#">Categorías</a>
+
+        <div class="submenu">
+          <a href="ecosistemas.html">Agua en los ecosistemas</a>
+          <a href="salud humana.html">Agua en la salud humana</a>
+          <a href="importancia_agua.html">Importancia del agua</a>
+        </div>
+      </li>
+
+      <li><a href="noticias.html">Noticias</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="main">
+
+  <!-- CARRUSEL -->
+  <div class="carousel">
+
+    <div class="carousel-track" id="track">
+
+      <img src="Imagenes/Vato arreglando llave.jpeg" alt="Persona arreglando una llave">
+
+      <img src="Imagenes/MorraAgua.jpeg" alt="Mujer tomando agua">
+
+      <img src="Imagenes/Vieja.jpeg" alt="Persona relacionada con el agua">
+
+      <img src="Imagenes/gente.jpeg" alt="Grupo de personas">
+
+      <img src="Imagenes/mundoacuatico.jpeg" alt="Mundo acuático">
+
+    </div>
+
+    <button class="arrow left" onclick="prevSlide()">❮</button>
+
+    <button class="arrow right" onclick="nextSlide()">❯</button>
+
+  </div>
+
+  <!-- NOTICIAS -->
+  <h2>Noticias Destacadas</h2>
+
+  <div class="products">
+
+    <div class="card">
+
+      <img src="Imagenes/guadalajara.jpeg" alt="Crisis de agua en Guadalajara">
+
+      <h3>Crisis de agua sucia en Guadalajara</h3>
+
+      <button onclick="mostrarDetalles('Crisis de agua sucia en Guadalajara')">
+        Detalles
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <img src="Imagenes/dia del agua.jpeg" alt="Día Mundial del Agua">
+
+      <h3>Día Mundial del Agua 2026</h3>
+
+      <button onclick="mostrarDetalles('Día Mundial del Agua 2026')">
+        Detalles
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <img src="Imagenes/ley de aguas.jpeg" alt="Nueva Ley de Aguas">
+
+      <h3>Nueva Ley de Aguas en México</h3>
+
+      <button onclick="mostrarDetalles('Nueva Ley de Aguas en México')">
+        Detalles
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <img src="Imagenes/filtros.jpeg" alt="Filtros para ríos">
+
+      <h3>Filtros para evitar contaminación en ríos</h3>
+
+      <button onclick="mostrarDetalles('Filtros para evitar contaminación en ríos')">
+        Detalles
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <img src="Imagenes/hoteles.jpeg" alt="Hoteles consumiendo agua">
+
+      <h3>Hoteles gastan mucha agua en verano</h3>
+
+      <button onclick="mostrarDetalles('Hoteles gastan mucha agua en verano')">
+        Detalles
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="cerrarModal()">&times;</span>
+
+    <div class="modal-body">
+
+      <div class="card-lateral">
+
+        <img id="modalImagen" alt="Imagen de noticia">
+
+      </div>
+
+      <div class="info-juego">
+
+        <h2 id="modalTitulo"></h2>
+
+        <p id="modalDescripcion"></p>
+
+        <p id="modalPrecio"></p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+  // Carrusel
+  const track = document.getElementById('track');
+
+  const totalSlides = track.children.length;
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+
+    const slideWidth =
+      document.querySelector('.carousel').offsetWidth;
+
+    track.style.transform =
+      `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  function nextSlide() {
+
+    currentIndex =
+      (currentIndex + 1) % totalSlides;
+
+    updateCarousel();
+  }
+
+  function prevSlide() {
+
+    currentIndex =
+      (currentIndex - 1 + totalSlides) % totalSlides;
+
+    updateCarousel();
+  }
+
+  // Auto carrusel
+  let autoSlide = setInterval(nextSlide, 3000);
+
+  // DATOS
+  const datos = {
+
+    "Crisis de agua sucia en Guadalajara": {
+
+      img: "Imagenes/guadalajara.jpeg",
+
+      desc:
+        "Problemas recientes de contaminación del agua en Guadalajara han afectado a miles de personas.",
+
+      info: "Situación crítica"
+    },
+
+    "Día Mundial del Agua 2026": {
+
+      img: "Imagenes/dia del agua.jpeg",
+
+      desc:
+        "Se celebra el 22 de marzo para concientizar sobre el cuidado del agua.",
+
+      info: "22 de marzo"
+    },
+
+    "Nueva Ley de Aguas en México": {
+
+      img: "Imagenes/ley de aguas.jpeg",
+
+      desc:
+        "Se busca regular mejor el uso del agua y proteger este recurso.",
+
+      info: "En discusión"
+    },
+
+    "Filtros para evitar contaminación en ríos": {
+
+      img: "Imagenes/filtros.jpeg",
+
+      desc:
+        "Nuevas tecnologías ayudan a limpiar el agua y reducir contaminantes.",
+
+      info: "Tecnología ecológica"
+    },
+
+    "Hoteles gastan mucha agua en verano": {
+
+      img: "Imagenes/hoteles.jpeg",
+
+      desc:
+        "El turismo incrementa el consumo de agua, afectando recursos locales.",
+
+      info: "Alto consumo"
+    }
+  };
+
+  function mostrarDetalles(nombre) {
+
+    const item = datos[nombre];
+
+    if (!item) return;
+
+    document.getElementById("modalTitulo").textContent = nombre;
+
+    document.getElementById("modalDescripcion").textContent =
+      item.desc;
+
+    document.getElementById("modalPrecio").textContent =
+      item.info;
+
+    document.getElementById("modalImagen").src =
+      item.img;
+
+    document.getElementById("modal").style.display =
+      "block";
+  }
+
+  function cerrarModal() {
+
+    document.getElementById("modal").style.display =
+      "none";
+  }
+
+  window.onclick = function(e) {
+
+    if (e.target.id === "modal") {
+
+      cerrarModal();
+    }
+  };
+
+  // Ajustar carrusel al cambiar tamaño
+  window.addEventListener('resize', updateCarousel);
+
+</script>
+
+<footer>
+  <p>&copy; 2026 LightWater. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
